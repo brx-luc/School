@@ -3,14 +3,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SchoolClass {
+public class SchoolClass{
 
     Scanner scan = new Scanner(System.in);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private ArrayList<Student> studentList = new ArrayList<>();
     private Student classRepresentative;
-    private Teacher MainTeacher;
 
     private Student s;
 
@@ -29,6 +28,8 @@ public class SchoolClass {
 
         s = new Student(name, vorname, dateOfBirth, email, studentnumber);
         studentList.add(s);
+        s.addToClassroom();
+
     }
 
     public void ShowClassroom(){
@@ -45,4 +46,7 @@ public class SchoolClass {
         return MainTeacher;
     }
 
+    public ArrayList<Student> getStudentList() {
+        return studentList;
+    }
 }
