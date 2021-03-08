@@ -42,9 +42,6 @@ public class SchoolClass{
         return classRepresentative;
     }
 
-    public Teacher getMainTeacher() {
-        return MainTeacher;
-    }
 
     public ArrayList<Student> getStudentList() {
         return studentList;
