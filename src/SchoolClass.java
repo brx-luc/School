@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SchoolClass{
@@ -19,22 +21,33 @@ public class SchoolClass{
         System.out.println("Vorname: ");
         String vorname = scan.next();
         System.out.println("Geburtsdatum: (Beispiel: 26/11/1997)");
-        String date = scan.next();
-        LocalDate dateOfBirth = LocalDate.parse(date, formatter);
-        System.out.println("E-Mail: ");
-        String email = scan.next();
-        System.out.println("Studentennummer: ");
-        int studentnumber = scan.nextInt();
+        try {
+            String date = scan.next();
+            LocalDate dateOfBirth = LocalDate.parse(date, formatter);
+            System.out.println("E-Mail: ");
+            String email = scan.next();
+            System.out.println("Studentennummer: ");
 
-        s = new Student(name, vorname, dateOfBirth, email, studentnumber);
-        studentList.add(s);
-        s.addToClassroom();
+            try {
+            int studentnumber = scan.nextInt();
+            s = new Student(name, vorname, dateOfBirth, email, studentnumber);
+            studentList.add(s);
+            s.addToClassroom();}
+            catch (InputMismatchException e){
+                System.out.println("Bitte geben Sie eine Zahl ein\n");
+            }
 
+        }catch (DateTimeParseException e){
+            System.out.println("Datum konnte nicht umgewandelt werden!\n");
+        }
     }
 
     public void ShowClassroom(){
         for(Student s : studentList){
             System.out.println(s);
+            }
+        if(studentList.isEmpty()){
+            System.out.println("Es wurden noch keine Schülerdaten gespeichert.\n");
         }
     }
 
